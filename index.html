@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#15172b">
+  <title>青春心碎模擬器</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="game" class="game" aria-live="polite">
+    <div class="background" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="dust" id="dust" aria-hidden="true"></div>
+
+    <section id="titleScreen" class="title-screen">
+      <p class="eyebrow">一場注定沒有正解的青春</p>
+      <h1>青春心碎<br><span>模擬器</span></h1>
+      <p class="subtitle">有些訊息讀了很多遍，也不會多出另一種意思。</p>
+      <button id="startBtn" class="start-btn">從那個夏天開始</button>
+      <button id="continueBtn" class="text-btn hidden">繼續上次的故事</button>
+      <p class="notice">全程 30 回合・不顯示數值・沒有戀愛成功結局</p>
+    </section>
+
+    <section id="playScreen" class="play-screen hidden">
+      <header class="topbar">
+        <div>
+          <span id="chapterLabel" class="chapter">CHAPTER 01</span>
+          <span id="dateLabel" class="date">高二升高三暑假・七月下旬</span>
+        </div>
+        <div class="top-actions">
+          <button id="soundBtn" class="icon-btn" aria-label="切換音效">♬</button>
+          <button id="phoneBtn" class="phone-btn"><span>▣</span> 手機 <i id="phoneDot"></i></button>
+          <button id="resetBtn" class="icon-btn" aria-label="重新開始">↻</button>
+        </div>
+      </header>
+
+      <div class="progress-track"><div id="progressBar"></div></div>
+
+      <section class="dialogue-card">
+        <div class="speaker-row">
+          <span id="speaker" class="speaker">旁白</span>
+          <span id="timeLabel" class="story-time">21:47</span>
+        </div>
+        <div id="storyText" class="story-text"></div>
+        <div id="choices" class="choices"></div>
+        <form id="customForm" class="custom-form hidden">
+          <label for="customInput">你想說什麼，或做什麼？</label>
+          <div class="input-row">
+            <input id="customInput" maxlength="120" autocomplete="off" placeholder="輸入許漆漆的台詞或動作……">
+            <button type="submit">確定</button>
+          </div>
+          <button id="cancelCustom" type="button" class="text-btn">返回選項</button>
+        </form>
+        <div id="continueArea" class="continue-area hidden">
+          <p id="consequence"></p>
+          <button id="nextBtn" class="next-btn">繼續 <span>→</span></button>
+        </div>
+      </section>
+    </section>
+
+    <section id="endingScreen" class="ending-screen hidden">
+      <p class="eyebrow">THE END</p>
+      <h2 id="endingTitle">沒有寄出的夏天</h2>
+      <div id="endingText" class="ending-text"></div>
+      <button id="endingRestart" class="start-btn">回到那個夏天</button>
+    </section>
+  </main>
+
+  <div id="phoneModal" class="modal hidden" role="dialog" aria-modal="true" aria-label="手機">
+    <div class="phone-shell">
+      <div class="phone-status"><span id="phoneTime">21:47</span><span>●●●　▰</span></div>
+      <div id="phoneContent" class="phone-content"></div>
+      <button id="closePhone" class="home-indicator" aria-label="關閉手機"></button>
+    </div>
+  </div>
+
+  <div id="confirmModal" class="confirm hidden" role="dialog" aria-modal="true">
+    <div class="confirm-box">
+      <p>確定要回到故事最初嗎？<br><small>目前的進度會被清除。</small></p>
+      <div><button id="cancelReset" class="text-btn">取消</button><button id="confirmReset">重新開始</button></div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
